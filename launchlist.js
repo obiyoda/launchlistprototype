@@ -57,7 +57,6 @@ if (Meteor.is_client) {
       if(Session.get('image3') !== ""  && Session.get('image3') !== null){
         image.push(Session.get('image3'));
       }
-      console.log(image);
       Content.insert({
         content:Session.get('new-content'),
         media:{
@@ -69,9 +68,12 @@ if (Meteor.is_client) {
           id:1234,
           name:"Jared Daines"
         }
-
-
       });
+      $('#new-content').val('');
+      $('#image1').val('');
+      $('#image2').val('');
+      $('#image3').val('');
+      $('#source').val('');
     }
   };
 
@@ -84,13 +86,9 @@ if (Meteor.is_client) {
     },
     'blur #message' : function(){
       Session.set('message', $('#message').val());
-      
     },
 
     'click #submit' : function(){
-      console.log('button clicked');
-      console.log(Session.get('message'));
-      console.log(Session.get('name'));
       $('#message').val('');
       Chatter.insert({
         message : Session.get('message'),
