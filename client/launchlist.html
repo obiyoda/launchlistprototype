@@ -1,0 +1,79 @@
+<head>
+	<title>launchlist</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#">Launch List</a>
+		</div>
+	</div>
+</div>
+<div class="container-fluid" style="margin-top:60px;">
+	<div class="row-fluid">
+		<div class="span8"><!--Body content-->			
+			{{> story}}
+		</div>
+		<div class="span4"><!--Sidebar content-->
+			<div class="row form-inline">
+				{{> form}}
+			</div>
+			<hr/>
+			<h1>Chat box</h1>
+			<div class="row" id="chatterbox" style="height:200px; border:1px solid #000; overflow:auto;">
+				{{> chatbox}}
+			</div>
+			<div class="row form-inline">
+				{{> chatform}}
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+<template name="story">
+	{{#each story}}
+		<div class="date">{{date}}</div>
+		<div class="content">{{content}} -- <a class="link" href="{{media.link}}" target="_blank">Link</a>
+		<ul>
+		{{#each image_objs}}
+			<li><img src="{{image}}" /></li>
+		{{/each}}
+	</ul>
+</div>
+	{{/each}}
+</template>	
+<template name="form">
+	<br/>
+	<label> Details:</label><textarea id="new-content" rows="3" cols="30"> </textarea>
+	<br/>
+	<label>Image:</label><input type="text" id="image1" placeholder="Image Url"><br/>
+	<label>Image:</label><input type="text" id="image2" placeholder="Image Url"><br/>
+	<label>Image:</label><input type="text" id="image3" placeholder="Image Url"><br/>
+	<label>Source link:</label><input type="text" id="source" placeholder="Source URL" />
+	<br/>
+	<input type="button" value="Create Story" id="submit"/>
+
+</template>
+
+<template name="chatbox">
+	{{#each chat}}
+	<div>
+		<div class="user"> {{username}} </div>
+		<div class="message"> {{message}} </div>
+	</div>
+	{{/each}}
+</template>	
+
+<template name="chatform">
+	<br/>
+	<label> Username:</label><input type="text" id="username" placeholder="enter name">
+	<br/>
+	<label> Message:</label><input type="text" id="message" placeholder="Enter Message">
+	<br/>
+	<input type="button" value="send" id="submit"/>
+</template>
